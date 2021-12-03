@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import Input from "./components/Input/Input";
+import React, { useState, useEffect } from 'react';
+import Input from './components/Input/Input';
 
 // Description (https://en.wikipedia.org/wiki/Pomodoro_Technique)
 // The original technique has six steps:
@@ -13,54 +13,81 @@ import Input from "./components/Input/Input";
 
 // MVP
 // add input for user to define task ✅
-// add start button ❌
-// add logic to create timer ❌
+// add start button ✅
+// add logic to create timer ✅
 // display countdown in ui ❌
 // add timer end ui ❌
 
-function App() {
-  const [task, setTask] = useState("");
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [countdown, setCountdown] = useState<Date>(new Date());
+const App: React.FC = function () {
+  const [task, setTask] = useState('');
+  const [counterStarted, setCounterStarted] = useState(false);
+  const [countdownTime, setCountdownTime] = useState<Date | null>(null);
 
-  const onCLickHandler = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
+  function countdownClock() {
+    if (countdownTime !== null) {
+      const timerID = setInterval(() => {
+        // Get today's date and time
+        const now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        const distance = countdownTime.getTime() - now;
+
+        // Time calculations for minutes and seconds
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        setCountdownTime(new Date(0, 0, 0, 0, minutes, seconds));
+
+        // If the count down is finished, clear interval
+        if (distance < 0) {
+          setTask('Task Complete!');
+          setCounterStarted(false);
+          setCountdownTime(null);
+          clearInterval(timerID);
+        }
+      }, 1000);
+    }
+  }
+
+  const startCountdown = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    const d = new Date();
-    d.setMinutes(d.getMinutes() + 0.9);
-    setCountdown(d);
+    if (!counterStarted) {
+      setCounterStarted(true);
+      // Initialize the distance between now and the count down date
+      const d = new Date();
+      // d.setMinutes(d.getMinutes() + 25);
+      d.setSeconds(d.getSeconds() + 15);
+      setCountdownTime(d);
+      return;
+    }
+    return;
   };
 
-  React.useEffect(() => {
-    const timerID = setInterval(() => tick(), 1000);
+  useEffect(() => {
+    const timerID = setInterval(() => countdownClock(), 1000);
     return function cleanup() {
       clearInterval(timerID);
     };
-  });
-
-  function tick() {
-    setCurrentDate(new Date());
-  }
-
-  if (currentDate < countdown) {
-    console.log("pienempi!");
-  } else {
-    console.log("suurempi!");
-  }
+  }, [counterStarted]);
 
   return (
     <div className="App">
       <Input setTask={setTask} />
       <div>
-        <p>It is {currentDate.toLocaleTimeString()} o'clock!</p>
-        <p>Next task will be: {task}</p>
+        <p>
+          It is
+          {/* {currentDate.toLocaleTimeString()} o&apos;clock! */}
+        </p>
+        <p>
+          Next task will be:
+          {task}
+        </p>
       </div>
-      <button onClick={(e) => onCLickHandler(e)}>start</button>
+      <button onClick={e => startCountdown(e)}>start</button>
       <p>Untill next brake:</p>
-      <p>{countdown?.toLocaleTimeString()}</p>
+      <p>{countdownTime?.toLocaleTimeString()}</p>
     </div>
   );
-}
+};
 
 export default App;
