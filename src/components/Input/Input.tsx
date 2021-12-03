@@ -1,25 +1,17 @@
-import React, { useRef } from "react";
-import { InputProps } from "./Input.types";
+import React, { FormEvent, useRef } from 'react';
+import { InputProps } from './Input.types';
 
-const Input: React.FC<InputProps> = (props) => {
+const Input: React.FC<InputProps> = (props: InputProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const { setTask } = props;
-  const submitHandler = (e: any) => {
+  const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     inputRef.current && setTask(inputRef.current.value);
   };
   return (
-    <form
-      style={{ display: "flex", flexDirection: "column" }}
-      onSubmit={submitHandler}
-    >
+    <form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={submitHandler}>
       <label htmlFor="taskInput">Decide on the task to be done:</label>
-      <input
-        id="taskInput"
-        type="text"
-        placeholder="Your next task will be"
-        ref={inputRef}
-      />
+      <input id="taskInput" type="text" placeholder="Your next task will be" ref={inputRef} />
       <button>Add</button>
     </form>
   );

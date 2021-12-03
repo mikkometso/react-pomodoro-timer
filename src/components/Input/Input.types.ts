@@ -1,5 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
-
 export interface InputProps {
-  setTask: Dispatch<SetStateAction<string>>
+  task? : string,
+  setTask : (task:string) => void,
 }
