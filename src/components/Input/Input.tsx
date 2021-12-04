@@ -1,4 +1,5 @@
 import React, { FormEvent, useRef } from 'react';
+import { StyledInputWrapper } from './Input.styles';
 import { InputProps } from './Input.types';
 
 const Input: React.FC<InputProps> = (props: InputProps) => {
@@ -9,11 +10,13 @@ const Input: React.FC<InputProps> = (props: InputProps) => {
     inputRef.current && setTask(inputRef.current.value);
   };
   return (
-    <form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={submitHandler}>
-      <label htmlFor="taskInput">Decide on the task to be done:</label>
-      <input id="taskInput" type="text" placeholder="Your next task will be" ref={inputRef} />
-      <button>Add</button>
-    </form>
+    <StyledInputWrapper>
+      <form onSubmit={submitHandler}>
+        <label htmlFor="taskInput">Decide on the task to be done:</label>
+        <input id="taskInput" type="text" placeholder="Your next task will be" ref={inputRef} />
+        <button>Add</button>
+      </form>
+    </StyledInputWrapper>
   );
 };
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './styles.css';
 import Input from './components/Input/Input';
 
 // Description (https://en.wikipedia.org/wiki/Pomodoro_Technique)
@@ -23,7 +24,7 @@ const App: React.FC = function () {
   const [counterStarted, setCounterStarted] = useState(false);
   const [countdownTime, setCountdownTime] = useState<Date | null>(null);
 
-  function countdownClock() {
+  const countdownClock = () => {
     if (countdownTime !== null) {
       const timerID = setInterval(() => {
         // Get today's date and time
@@ -47,7 +48,7 @@ const App: React.FC = function () {
         }
       }, 1000);
     }
-  }
+  };
 
   const startCountdown = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
