@@ -4,7 +4,7 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["plugin:react/recommended", "eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"],
+  "extends": ["plugin:@typescript-eslint/recommended", "prettier"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
@@ -22,8 +22,7 @@
     "max-len": ["error", { "code": 120, "tabWidth": 2, "ignoreComments": true }],
     "no-console": 1,
     // "no-console": ["error", { "allow": ["error"] }],
-    "react/default-props-match-prop-types": "off",
     "react/jsx-one-expression-per-line": "off",
-    "react/prop-types": "off"
+    "allowDirectConstAssertionInArrowFunctions": 0
   }
 }
