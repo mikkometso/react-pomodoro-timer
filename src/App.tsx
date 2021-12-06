@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Input from './components/Input/Input';
 import CountdownClock from './components/Countdown/CountdownClock';
 import DisplayedTask from './components/Countdown/DisplayedTask';
-import Button from './components/Button/Button';
 
 // Description (https://en.wikipedia.org/wiki/Pomodoro_Technique)
 // The original technique has six steps:
@@ -78,7 +77,6 @@ const App: React.FC = function () {
         counterStarted={counterStarted}
         setCounterStarted={setCounterStarted}
       />
-      <Button text="foo" />
     </StyledAppWrapper>
   );
 };

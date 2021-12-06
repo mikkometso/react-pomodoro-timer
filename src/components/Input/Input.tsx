@@ -1,4 +1,5 @@
 import React, { FormEvent, useRef } from 'react';
+import Button from '../Button/Button';
 import { StyledInputWrapper } from './Input.styles';
 import { InputProps } from './Input.types';
 
@@ -14,7 +15,7 @@ const Input: React.FC<InputProps> = props => {
       <form onSubmit={submitHandler}>
         <label htmlFor="taskInput">Add the task you will be working on</label>
         <input id="taskInput" type="text" placeholder="Add new task" ref={inputRef} />
-        <button>Add task</button>
+        <Button text="Add task" color="#da00bd" />
       </form>
     </StyledInputWrapper>
   );
