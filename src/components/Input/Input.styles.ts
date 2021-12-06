@@ -1,9 +1,6 @@
 import styled from 'styled-components';
 
 export const StyledInputWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  padding: 2rem;
   form {
     display: flex;
     flex-direction: column;
@@ -14,6 +11,10 @@ export const StyledInputWrapper = styled.div`
     input {
       width: 450px;
       margin: 1rem 0;
+      padding-left: 1rem;
+      height: 2rem;
+      border-color: black;
+      border-radius: 25px;
     }
     button {
       width: 300px;

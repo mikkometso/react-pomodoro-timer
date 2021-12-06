@@ -2,7 +2,7 @@ import React, { FormEvent, useRef } from 'react';
 import { StyledInputWrapper } from './Input.styles';
 import { InputProps } from './Input.types';
 
-const Input: React.FC<InputProps> = (props: InputProps) => {
+const Input: React.FC<InputProps> = props => {
   const inputRef = useRef<HTMLInputElement>(null);
   const { setTask } = props;
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
@@ -12,9 +12,9 @@ const Input: React.FC<InputProps> = (props: InputProps) => {
   return (
     <StyledInputWrapper>
       <form onSubmit={submitHandler}>
-        <label htmlFor="taskInput">Decide on the task to be done:</label>
-        <input id="taskInput" type="text" placeholder="Your next task will be" ref={inputRef} />
-        <button>Add</button>
+        <label htmlFor="taskInput">Add the task you will be working on</label>
+        <input id="taskInput" type="text" placeholder="Add new task" ref={inputRef} />
+        <button>Add task</button>
       </form>
     </StyledInputWrapper>
   );
