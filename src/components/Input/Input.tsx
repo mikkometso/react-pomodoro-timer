@@ -15,7 +15,7 @@ const Input: React.FC<InputProps> = props => {
       <form onSubmit={submitHandler}>
         <label htmlFor="taskInput">Add the task you will be working on</label>
         <input id="taskInput" type="text" placeholder="Add new task" ref={inputRef} />
-        <Button text="Add task" color="#da00bd" />
+        <Button text="Add task" color="#4e4e4e" rounded />
       </form>
     </StyledInputWrapper>
   );
