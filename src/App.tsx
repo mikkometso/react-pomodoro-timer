@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './styles.css';
+import styled from 'styled-components';
 import Input from './components/Input/Input';
+import CountdownClock from './components/Countdown/CountdownClock';
+import DisplayedTask from './components/Countdown/DisplayedTask';
+import Button from './components/Button/Button';
 
 // Description (https://en.wikipedia.org/wiki/Pomodoro_Technique)
 // The original technique has six steps:
@@ -23,6 +27,13 @@ const App: React.FC = function () {
   const [task, setTask] = useState('');
   const [counterStarted, setCounterStarted] = useState(false);
   const [countdownTime, setCountdownTime] = useState<Date | null>(null);
+
+  const StyledAppWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem;
+  `;
 
   const countdownClock = () => {
     if (countdownTime !== null) {
@@ -50,20 +61,6 @@ const App: React.FC = function () {
     }
   };
 
-  const startCountdown = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
-    if (!counterStarted) {
-      setCounterStarted(true);
-      // Initialize the distance between now and the count down date
-      const d = new Date();
-      // d.setMinutes(d.getMinutes() + 25);
-      d.setSeconds(d.getSeconds() + 15);
-      setCountdownTime(d);
-      return;
-    }
-    return;
-  };
-
   useEffect(() => {
     const timerID = setInterval(() => countdownClock(), 1000);
     return function cleanup() {
@@ -72,22 +69,17 @@ const App: React.FC = function () {
   }, [counterStarted]);
 
   return (
-    <div className="App">
+    <StyledAppWrapper>
       <Input setTask={setTask} />
-      <div>
-        <p>
-          It is
-          {/* {currentDate.toLocaleTimeString()} o&apos;clock! */}
-        </p>
-        <p>
-          Next task will be:
-          {task}
-        </p>
-      </div>
-      <button onClick={e => startCountdown(e)}>start</button>
-      <p>Untill next brake:</p>
-      <p>{countdownTime?.toLocaleTimeString()}</p>
-    </div>
+      <DisplayedTask task={task} />
+      <CountdownClock
+        countdownTime={countdownTime}
+        setCountdownTime={setCountdownTime}
+        counterStarted={counterStarted}
+        setCounterStarted={setCounterStarted}
+      />
+      <Button text="foo" />
+    </StyledAppWrapper>
   );
 };
 
