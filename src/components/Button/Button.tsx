@@ -7,11 +7,13 @@ interface Button {
   filled?: boolean;
   rounded?: boolean;
   disabled?: boolean;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const StyledButton = styled.button<{ color?: string; filled?: boolean; rounded?: boolean; disabled?: boolean }>`
   font-size: 1.1rem;
   height: 3rem;
+  min-width: 12.5rem;
   ${props =>
     props.rounded &&
     css`

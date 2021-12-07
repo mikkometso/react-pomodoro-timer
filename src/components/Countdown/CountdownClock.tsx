@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '../Button/Button';
 
 interface CountdownClock {
   countdownTime: Date | null;
@@ -25,7 +26,7 @@ const CountdownClock: React.FC<CountdownClock> = props => {
   };
   return (
     <div>
-      <button onClick={e => startCountdown(e)}>start</button>
+      <Button onClick={e => startCountdown(e)} text="start" rounded />
       <p>Untill next brake:</p>
       <p>{`${countdownTime?.getMinutes() ? countdownTime?.getMinutes() : '00'}:${
         countdownTime?.getSeconds() ? countdownTime?.getSeconds() : '00'
