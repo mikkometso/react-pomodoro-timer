@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './styles.css';
 import styled from 'styled-components';
 import Input from './components/Input/Input';
-import CountdownClock from './components/Countdown/CountdownClock';
-import DisplayedTask from './components/Countdown/DisplayedTask';
+import Countdown from './components/Countdown/Countdown';
+import DisplayedTask from './components/DisplayedTask/DisplayedTask';
 
 // Description (https://en.wikipedia.org/wiki/Pomodoro_Technique)
 // The original technique has six steps:
@@ -70,8 +70,8 @@ const App: React.FC = function () {
   return (
     <StyledAppWrapper>
       <Input setTask={setTask} />
-      <DisplayedTask task={task} />
-      <CountdownClock
+      {task && <DisplayedTask task={task} />}
+      <Countdown
         countdownTime={countdownTime}
         setCountdownTime={setCountdownTime}
         counterStarted={counterStarted}

@@ -1,14 +1,15 @@
 import React from 'react';
 import Button from '../Button/Button';
+import { CountdownkWrapper } from './Countdown.styles';
 
-interface CountdownClock {
+interface Countdown {
   countdownTime: Date | null;
   setCountdownTime: React.Dispatch<React.SetStateAction<Date | null>>;
   counterStarted: boolean;
   setCounterStarted: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const CountdownClock: React.FC<CountdownClock> = props => {
+const Countdown: React.FC<Countdown> = props => {
   const { countdownTime, setCountdownTime, counterStarted, setCounterStarted } = props;
 
   const startCountdown = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -25,14 +26,14 @@ const CountdownClock: React.FC<CountdownClock> = props => {
     return;
   };
   return (
-    <div>
+    <CountdownkWrapper>
       <Button onClick={e => startCountdown(e)} text="start" rounded />
       <p>Untill next brake:</p>
       <p>{`${countdownTime?.getMinutes() ? countdownTime?.getMinutes() : '00'}:${
         countdownTime?.getSeconds() ? countdownTime?.getSeconds() : '00'
       }`}</p>
-    </div>
+    </CountdownkWrapper>
   );
 };
 
-export default CountdownClock;
+export default Countdown;

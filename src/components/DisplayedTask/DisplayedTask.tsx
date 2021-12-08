@@ -5,7 +5,7 @@ const DisplayedTask = (props: { task: string }) => {
   const { task } = props;
 
   const DisplayedTaskWrapper = styled.div`
-    margin: 4rem;
+    margin-bottom: 2rem;
     .text {
       text-align: center;
       margin: 0;
