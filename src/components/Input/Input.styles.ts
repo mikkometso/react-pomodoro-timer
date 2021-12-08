@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledInputWrapper = styled.div`
+  margin-bottom: 2rem;
   form {
     display: flex;
     flex-direction: column;
