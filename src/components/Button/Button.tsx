@@ -36,9 +36,9 @@ const StyledButton = styled.button<{ color?: string; filled?: boolean; rounded?:
 `;
 
 const Button: React.FC<Button> = props => {
-  const { text, color, filled, rounded, disabled } = props;
+  const { text, color, filled, rounded, disabled, onClick } = props;
   return (
-    <StyledButton color={color} filled={filled} rounded={rounded} disabled={disabled}>
+    <StyledButton color={color} filled={filled} rounded={rounded} disabled={disabled} onClick={onClick}>
       {text}
     </StyledButton>
   );
