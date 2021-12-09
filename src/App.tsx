@@ -19,7 +19,7 @@ import DisplayedTask from './components/DisplayedTask/DisplayedTask';
 // add input for user to define task ✅
 // add start button ✅
 // add logic to create timer ✅
-// display countdown in ui ❌
+// display countdown in ui ✅
 // add timer end ui ❌
 
 const App: React.FC = function () {
@@ -69,7 +69,8 @@ const App: React.FC = function () {
 
   return (
     <StyledAppWrapper>
-      <Input setTask={setTask} />
+      {/* TODO: add edit/cancel option so that user would be able to alter the task in hand */}
+      {!task && <Input setTask={setTask} />}
       {task && <DisplayedTask task={task} />}
       <Countdown
         countdownTime={countdownTime}
