@@ -23,6 +23,6 @@
     "no-console": 1,
     // "no-console": ["error", { "allow": ["error"] }],
     "react/jsx-one-expression-per-line": "off",
-    "allowDirectConstAssertionInArrowFunctions": 0
+    "allowDirectConstAssertionInArrowFunctions": true
   }
 }
