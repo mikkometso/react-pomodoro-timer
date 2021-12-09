@@ -28,10 +28,12 @@ const Countdown: React.FC<Countdown> = props => {
   return (
     <CountdownkWrapper>
       <Button onClick={e => startCountdown(e)} text="start" rounded />
-      <p>Untill next brake:</p>
-      <p>{`${countdownTime?.getMinutes() ? countdownTime?.getMinutes() : '00'}:${
-        countdownTime?.getSeconds() ? countdownTime?.getSeconds() : '00'
-      }`}</p>
+      <p className="heading">Untill next brake:</p>
+      <div className="countdown">
+        <p>{`${countdownTime?.getMinutes() ? countdownTime?.getMinutes() : '00'}:${
+          countdownTime?.getSeconds() ? countdownTime?.getSeconds() : '00'
+        }`}</p>
+      </div>
     </CountdownkWrapper>
   );
 };
